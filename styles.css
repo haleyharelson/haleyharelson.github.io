@@ -1,1 +1,45 @@
+/* styling for navigation bar */
+  .navigation-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #666;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .menu-items {
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+  
+  .menu-items a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  .menu-items a:hover {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
 
+  /* styling for page headers */
+  h2 {
+      margin-top: 75px;
+  }
+
+  /* styling for resources list */
+  .resources-list {
+      margin-top: 25px;
+  }
+  
