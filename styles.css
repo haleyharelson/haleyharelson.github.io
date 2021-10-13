@@ -33,13 +33,23 @@
     background-color: #4CAF50;
   }
 
-  /* styling for page headers */
-  h2 {
-      margin-top: 75px;
-  }
-
   /* styling for resources list */
   .resources-list {
       margin-top: 25px;
+  }
+
+  svg {
+    width: 1000px;
+    height: 600px;
+    border:1px solid gray;  
+  }
+
+  rect {
+    fill:lightcoral;
+  }
+
+  .axis-label {
+    font-size:1.2em;
+    font-family:sans-serif;
   }
   
