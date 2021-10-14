@@ -15,7 +15,6 @@ function drawBarChart() {
     const innerHeight = height - margin.top - margin.bottom;
 
     d3.csv('Code Frequencies.csv').then(data => {
-        console.log(data);
 
         data.sort(function (a, b) {
             return +b["Frequency"] - +a["Frequency"];
@@ -25,7 +24,6 @@ function drawBarChart() {
             d.Frequency = +d["Frequency"];
             d.Codes = d["Codes"];
         });
-        console.log(data);
 
         const xScale = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) { return d.Frequency; })]) // data space
