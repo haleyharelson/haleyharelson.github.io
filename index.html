@@ -17,7 +17,7 @@
         </ul>
         <br></br>
         <br></br>
-        <h3 class="text-center">Social Isolation and Loneliness in Older Adults During COVID-19: A Visual Essay</h3>
+        <h3 class="text-center"><b><u>Social Isolation and Loneliness in Older Adults During COVID-19: A Visual Essay</u></b></h3>
         <br></br>
         <p><b>Overview:</b></p>
         <p>
@@ -39,7 +39,11 @@ S (“I sometimes feel this way”), R (“I rarely feel this way”), N (“I n
             The target audience for the findings of this study are older adults, aged 50+, who are experiencing feelings of social isolation and/or loneliness. Outlined below is a visual essay including the findings of our two study methods. Additionally, resources to overcome feelings of loneliness and isolation based on the study findings are provided. 
 
         </p>
-             <!-- 1. Our SVG that is used to draw the bar chart -->
+            <!-- Add 2 buttons for selecting between UCLA and PROMIS scores -->
+            <button onclick="drawLollipopChart('AvgUCLAScore')">UCLA SCORE</button>
+            <button onclick="drawLollipopChart('AvgPROMISScore')">PROMIS SCORE</button>
+            <svg id="lollipopSvg"></svg>
+             <!-- 2. Our SVG that is used to draw the bar chart -->
              <svg id="barchartSvg"></svg>
     </body>
 </html>

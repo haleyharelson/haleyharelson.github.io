@@ -51,6 +51,7 @@
     border:1px solid gray;  
     display: block;
     margin: auto;
+    margin-bottom: 25px;
   }
 
   rect {
@@ -88,8 +89,8 @@
     padding: 100px 20px;
     height: 100%;
   }
-#Activities {background-color: rgb(233, 114, 114);}
-#Communication {background-color: green;}
-#Mindfulness {background-color: blue;}
-#Community {background-color: orange;}
+#Activities {background-color: rgb(211, 139, 139);}
+#Communication {background-color: rgb(91, 158, 167);}
+#Mindfulness {background-color: rgb(109, 156, 117);}
+#Community {background-color: rgb(209, 133, 83);}
   
