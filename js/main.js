@@ -1,9 +1,125 @@
+// define global variables
+let genderData;
+let lollipopSvg;
+let margin;
+let svg;
+let xScake;
+let yScale;
+let xAxis;
+let yAxis;
+
 // This function is called once the HTML page is fully loaded by the browser
 document.addEventListener('DOMContentLoaded', function () {
     console.log("page loaded");
-
+    drawLollipopCanvas();
+    drawLollipopChart('AvgUCLAScore');
     drawBarChart();
 });
+
+function drawLollipopCanvas() {
+    // set the dimensions and margins of the graph
+    margin = {top: 40, bottom: 90, right: 20, left: 190},
+    width = 1000 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    svg = d3.select("#lollipopSvg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+    // Initialize the X axis
+    xScale = d3.scaleBand()
+    .range([ 0, width ])
+    .padding(1);
+    xAxis = svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+
+    // Initialize the Y axis
+    yScale = d3.scaleLinear()
+    .range([ height, 0]);
+    yAxis = svg.append("g")
+    .attr("class", "myYaxis")
+}
+
+    
+function drawLollipopChart(selectedScore) {
+
+    console.log("lollipop function call");
+
+    d3.csv('GenderScores.csv').then(data => {
+        data.forEach(d => {
+            d.AvgUCLAScore = +d["AvgUCLAScore"];
+            d.AvgPROMISScore = +d["AvgPROMISScore"];
+            d.Gender = d["Gender"];
+        });
+    genderData = data;
+
+    // X axis
+    xScale.domain(data.map(function(d) { return d.Gender; }))
+    xAxis.transition().duration(1000).call(d3.axisBottom(xScale));
+
+    // Add Y axis
+    yScale.domain([45, 50]);
+    yAxis.transition().duration(1000).call(d3.axisLeft(yScale).ticks(10));
+
+    // variable u: map data to existing circle
+    var j = svg.selectAll(".myLine")
+        .data(genderData)
+      // update lines
+      j
+        .enter()
+        .append("line")
+        .attr("class", "myLine")
+        .merge(j)
+        .transition()
+        .duration(1000)
+          .attr("x1", function(d) { console.log(xScale(d.Gender)) ; return xScale(d.Gender); })
+          .attr("x2", function(d) { return xScale(d.Gender); })
+          .attr("y1", yScale(45))
+          .attr("y2", function(d) { return yScale(d[selectedScore]); })
+          .attr("stroke", "#69b3a2")
+    
+    // variable u: map data to existing circle
+    var u = svg.selectAll("circle")
+        .data(genderData)
+      // update bars
+      u
+        .enter()
+        .append("circle")
+        .merge(u)
+        .transition()
+        .duration(1000)
+          .attr("cx", function(d) { return xScale(d.Gender); })
+          .attr("cy", function(d) { return yScale(d[selectedScore]); })
+          .attr("r", 8)
+          .attr("fill", "#69b3a2");
+        
+        svg.append('text')
+          .attr('class', 'axis-label')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', '-120px')
+          .attr('x', -height / 2)
+          .attr('text-anchor', 'middle')
+          .text('Average Score');
+        svg.append('text')
+          .attr('class', 'axis-label')
+          .attr('text-anchor', 'middle')
+          .attr('x', width / 2)
+          .attr('y', height + 70)
+          .text('Gender');
+        svg.append("text")
+          .attr("x", (width / 2) - 100)             
+          .attr("y", 10 - (margin.top / 2))
+          .attr("text-anchor", "middle")  
+          .style("font-size", "24px") 
+          .style("text-decoration", "underline")  
+          .text("Average UCLA or PROMIS Score vs. Gender");
+
+    });
+}
 
 function drawBarChart() {
     const svg = d3.select('#barchartSvg');

@@ -51,6 +51,7 @@
     border:1px solid gray;  
     display: block;
     margin: auto;
+    margin-bottom: 25px;
   }
 
   rect {
