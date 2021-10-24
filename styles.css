@@ -61,4 +61,35 @@
     font-size:1.2em;
     font-family:sans-serif;
   }
+  /* styling for buttons on resource list*/
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+  }
+  .tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+
+  .tablink:hover {
+    background-color: #777;
+  }
+  .tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+  }
+#Activities {background-color: rgb(233, 114, 114);}
+#Communication {background-color: green;}
+#Mindfulness {background-color: blue;}
+#Community {background-color: orange;}
   
