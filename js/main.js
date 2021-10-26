@@ -1,55 +1,91 @@
 // define global variables
+// for gender chart
 let genderData;
-let lollipopSvg;
-let margin;
-let svg;
-let xScake;
-let yScale;
-let xAxis;
-let yAxis;
+let marginGenderChart;
+let svgGenderChart;
+let xScaleGenderChart;
+let yScaleGenderChart;
+let xAxisGenderChart;
+let yAxisGenderChart;
+
+// for race chart
+let raceData;
+let marginRaceChart;
+let svgRaceChart;
+let xScaleRaceChart;
+let yScaleRaceChart;
+let xAxisRaceChart;
+let yAxisRaceChart;
 
 // This function is called once the HTML page is fully loaded by the browser
 document.addEventListener('DOMContentLoaded', function () {
     console.log("page loaded");
-    drawLollipopCanvas();
-    drawLollipopChart('AvgUCLAScore');
+    drawGenderLollipopCanvas();
+    drawGenderLollipopChart('AvgUCLAScore');
+    drawRaceLollipopCanvas();
+    drawRaceLollipopChart('AvgUCLAScore');
     drawBarChart();
 });
 
-function drawLollipopCanvas() {
+function drawGenderLollipopCanvas() {
     // set the dimensions and margins of the graph
-    margin = {top: 40, bottom: 90, right: 20, left: 190},
-    width = 1000 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    marginGenderChart = {top: 40, bottom: 90, right: 20, left: 190},
+    widthGenderChart = 1000 - marginGenderChart.left - marginGenderChart.right,
+    heightGenderChart = 600 - marginGenderChart.top - marginGenderChart.bottom;
 
     // append the svg object to the body of the page
-    svg = d3.select("#lollipopSvg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    svgGenderChart = d3.select("#genderLollipopSvg")
+    .attr("width", widthGenderChart + marginGenderChart.left + marginGenderChart.right)
+    .attr("height", heightGenderChart + marginGenderChart.top + marginGenderChart.bottom)
     .append("g")
     .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+        "translate(" + marginGenderChart.left + "," + marginGenderChart.top + ")");
 
     // Initialize the X axis
-    xScale = d3.scaleBand()
-    .range([ 0, width ])
+    xScaleGenderChart = d3.scaleBand()
+    .range([ 0, widthGenderChart ])
     .padding(1);
-    xAxis = svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
+    xAxisGenderChart = svgGenderChart.append("g")
+    .attr("transform", "translate(0," + heightGenderChart + ")")
 
     // Initialize the Y axis
-    yScale = d3.scaleLinear()
-    .range([ height, 0]);
-    yAxis = svg.append("g")
-    .attr("class", "myYaxis")
+    yScaleGenderChart = d3.scaleLinear()
+    .range([ heightGenderChart, 0]);
+    yAxisGenderChart = svgGenderChart.append("g")
+    .attr("class", "myYaxisGenderChart")
+}
+
+function drawRaceLollipopCanvas() {
+    // set the dimensions and margins of the graph
+    marginRaceChart = {top: 40, bottom: 90, right: 20, left: 190},
+    widthRaceChart = 1000 - marginRaceChart.left - marginRaceChart.right,
+    heightRaceChart = 600 - marginRaceChart.top - marginRaceChart.bottom;
+
+    // append the svg object to the body of the page
+    svgRaceChart = d3.select("#raceLollipopSvg")
+    .attr("width", widthRaceChart + marginRaceChart.left + marginRaceChart.right)
+    .attr("height", heightRaceChart + marginRaceChart.top + marginRaceChart.bottom)
+    .append("g")
+    .attr("transform",
+        "translate(" + marginRaceChart.left + "," + marginRaceChart.top + ")");
+
+    // Initialize the X axis
+    xScaleRaceChart = d3.scaleBand()
+    .range([ 0, widthRaceChart ])
+    .padding(1);
+    xAxisRaceChart = svgRaceChart.append("g")
+    .attr("transform", "translate(0," + heightRaceChart + ")")
+
+    // Initialize the Y axis
+    yScaleRaceChart = d3.scaleLinear()
+    .range([ heightRaceChart, 0]);
+    yAxisRaceChart = svgRaceChart.append("g")
+    .attr("class", "myYaxisRaceChart")
 }
 
     
-function drawLollipopChart(selectedScore) {
-
-    console.log("lollipop function call");
-
-    d3.csv('GenderScores.csv').then(data => {
+function drawGenderLollipopChart(selectedScore) {
+    d3.csv('/data/GenderScores.csv').then(data => {
         data.forEach(d => {
             d.AvgUCLAScore = +d["AvgUCLAScore"];
             d.AvgPROMISScore = +d["AvgPROMISScore"];
@@ -58,32 +94,32 @@ function drawLollipopChart(selectedScore) {
     genderData = data;
 
     // X axis
-    xScale.domain(data.map(function(d) { return d.Gender; }))
-    xAxis.transition().duration(1000).call(d3.axisBottom(xScale));
+    xScaleGenderChart.domain(data.map(function(d) { return d.Gender; }))
+    xAxisGenderChart.transition().duration(1000).call(d3.axisBottom(xScaleGenderChart));
 
     // Add Y axis
-    yScale.domain([45, 50]);
-    yAxis.transition().duration(1000).call(d3.axisLeft(yScale).ticks(10));
+    yScaleGenderChart.domain([45, 50]);
+    yAxisGenderChart.transition().duration(1000).call(d3.axisLeft(yScaleGenderChart).ticks(10));
 
     // variable u: map data to existing circle
-    var j = svg.selectAll(".myLine")
+    var j = svgGenderChart.selectAll(".myLineGenderChart")
         .data(genderData)
       // update lines
       j
         .enter()
         .append("line")
-        .attr("class", "myLine")
+        .attr("class", "myLineGenderChart")
         .merge(j)
         .transition()
         .duration(1000)
-          .attr("x1", function(d) { console.log(xScale(d.Gender)) ; return xScale(d.Gender); })
-          .attr("x2", function(d) { return xScale(d.Gender); })
-          .attr("y1", yScale(45))
-          .attr("y2", function(d) { return yScale(d[selectedScore]); })
+          .attr("x1", function(d) { console.log(xScaleGenderChart(d.Gender)) ; return xScaleGenderChart(d.Gender); })
+          .attr("x2", function(d) { return xScaleGenderChart(d.Gender); })
+          .attr("y1", yScaleGenderChart(45))
+          .attr("y2", function(d) { return yScaleGenderChart(d[selectedScore]); })
           .attr("stroke", "#69b3a2")
     
     // variable u: map data to existing circle
-    var u = svg.selectAll("circle")
+    var u = svgGenderChart.selectAll("circle")
         .data(genderData)
       // update bars
       u
@@ -92,31 +128,104 @@ function drawLollipopChart(selectedScore) {
         .merge(u)
         .transition()
         .duration(1000)
-          .attr("cx", function(d) { return xScale(d.Gender); })
-          .attr("cy", function(d) { return yScale(d[selectedScore]); })
+          .attr("cx", function(d) { return xScaleGenderChart(d.Gender); })
+          .attr("cy", function(d) { return yScaleGenderChart(d[selectedScore]); })
           .attr("r", 8)
           .attr("fill", "#69b3a2");
         
-        svg.append('text')
+        svgGenderChart.append('text')
           .attr('class', 'axis-label')
           .attr('transform', 'rotate(-90)')
           .attr('y', '-120px')
-          .attr('x', -height / 2)
+          .attr('x', -heightGenderChart / 2)
           .attr('text-anchor', 'middle')
           .text('Average Score');
-        svg.append('text')
+        svgGenderChart.append('text')
           .attr('class', 'axis-label')
           .attr('text-anchor', 'middle')
-          .attr('x', width / 2)
-          .attr('y', height + 70)
+          .attr('x', widthGenderChart / 2)
+          .attr('y', heightGenderChart + 70)
           .text('Gender');
-        svg.append("text")
-          .attr("x", (width / 2) - 100)             
-          .attr("y", 10 - (margin.top / 2))
+        svgGenderChart.append("text")
+          .attr("x", (widthGenderChart / 2) - 100)             
+          .attr("y", 10 - (marginGenderChart.top / 2))
           .attr("text-anchor", "middle")  
           .style("font-size", "24px") 
           .style("text-decoration", "underline")  
           .text("Average UCLA or PROMIS Score vs. Gender");
+
+    });
+}
+
+function drawRaceLollipopChart(selectedScore) {
+    d3.csv('/data/Race Scores.csv').then(data => {
+        data.forEach(d => {
+            d.AvgUCLAScore = +d["AvgUCLAScore"];
+            d.AvgPROMISScore = +d["AvgPROMISScore"];
+            d.Race = d["Race"];
+        });
+    raceData = data;
+
+    // X axis
+    xScaleRaceChart.domain(data.map(function(d) { return d.Race; }))
+    xAxisRaceChart.transition().duration(1000).call(d3.axisBottom(xScaleRaceChart));
+
+    // Add Y axis
+    yScaleRaceChart.domain([40, 55]);
+    yAxisRaceChart.transition().duration(1000).call(d3.axisLeft(yScaleRaceChart).ticks(20));
+
+    // variable u: map data to existing circle
+    var j = svgRaceChart.selectAll(".myLineRaceChart")
+        .data(raceData)
+      // update lines
+      j
+        .enter()
+        .append("line")
+        .attr("class", "myLineRaceChart")
+        .merge(j)
+        .transition()
+        .duration(1000)
+          .attr("x1", function(d) { console.log(xScaleRaceChart(d.Race)) ; return xScaleRaceChart(d.Race); })
+          .attr("x2", function(d) { return xScaleRaceChart(d.Race); })
+          .attr("y1", yScaleRaceChart(40))
+          .attr("y2", function(d) { return yScaleRaceChart(d[selectedScore]); })
+          .attr("stroke", "#69b3a2")
+    
+    // variable u: map data to existing circle
+    var u = svgRaceChart.selectAll("circle")
+        .data(raceData)
+      // update bars
+      u
+        .enter()
+        .append("circle")
+        .merge(u)
+        .transition()
+        .duration(1000)
+          .attr("cx", function(d) { return xScaleRaceChart(d.Race); })
+          .attr("cy", function(d) { return yScaleRaceChart(d[selectedScore]); })
+          .attr("r", 8)
+          .attr("fill", "#69b3a2");
+        
+        svgRaceChart.append('text')
+          .attr('class', 'axis-label')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', '-120px')
+          .attr('x', -heightRaceChart / 2)
+          .attr('text-anchor', 'middle')
+          .text('Average Score');
+        svgRaceChart.append('text')
+          .attr('class', 'axis-label')
+          .attr('text-anchor', 'middle')
+          .attr('x', widthRaceChart / 2)
+          .attr('y', heightRaceChart + 70)
+          .text('Race');
+        svgRaceChart.append("text")
+          .attr("x", (widthRaceChart / 2) - 100)             
+          .attr("y", 10 - (marginRaceChart.top / 2))
+          .attr("text-anchor", "middle")  
+          .style("font-size", "24px") 
+          .style("text-decoration", "underline")  
+          .text("Average UCLA or PROMIS Score vs. Race");
 
     });
 }
@@ -130,7 +239,7 @@ function drawBarChart() {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    d3.csv('Code Frequencies.csv').then(data => {
+    d3.csv('/data/Code Frequencies.csv').then(data => {
 
         data.sort(function (a, b) {
             return +b["Frequency"] - +a["Frequency"];

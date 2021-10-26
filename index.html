@@ -12,6 +12,7 @@
     </head>
     <body>
         <ul class="navigation-bar">
+            <li class="menu-items"><a href="about.html">About</a></li>
             <li class="menu-items"><a href="#">Visual Essay</a></li>
             <li class="menu-items"><a href="resources.html">Resources</a></li>
         </ul>
@@ -71,10 +72,13 @@ S (“I sometimes feel this way”), R (“I rarely feel this way”), N (“I n
 
         </p>
             <!-- Add 2 buttons for selecting between UCLA and PROMIS scores -->
-            <button onclick="drawLollipopChart('AvgUCLAScore')">UCLA SCORE</button>
-            <button onclick="drawLollipopChart('AvgPROMISScore')">PROMIS SCORE</button>
-            <svg id="lollipopSvg"></svg>
-             <!-- 2. Our SVG that is used to draw the bar chart -->
+            <button onclick="drawGenderLollipopChart('AvgUCLAScore')" class="ucla-button-gender">UCLA SCORE</button>
+            <button onclick="drawGenderLollipopChart('AvgPROMISScore')" class="promis-button-gender">PROMIS SCORE</button>
+            <svg id="genderLollipopSvg"></svg>
+            <button onclick="drawRaceLollipopChart('AvgUCLAScore')" class="ucla-button-race">UCLA SCORE</button>
+            <button onclick="drawRaceLollipopChart('AvgPROMISScore')" class="promis-button-race">PROMIS SCORE</button>
+            <svg id="raceLollipopSvg"></svg>
+            <!-- 2. Our SVG that is used to draw the bar chart -->
              <svg id="barchartSvg"></svg>
     </body>
 </html>

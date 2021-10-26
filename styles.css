@@ -58,6 +58,32 @@
     fill:lightcoral;
   }
 
+  .ucla-button-gender {
+    margin-bottom: 10px;
+    margin-left: 140px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+
+  .promis-button-gender {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+
+  .ucla-button-race {
+    margin-bottom: 10px;
+    margin-left: 140px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+
+  .promis-button-race {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+
   .axis-label {
     font-size:1.2em;
     font-family:sans-serif;
@@ -76,21 +102,35 @@
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
+    font-size: 14px;
+    width: 24.26%;
   }
 
   .tablink:hover {
     background-color: #777;
   }
+
   .tabcontent {
     color: white;
     display: none;
     padding: 100px 20px;
     height: 100%;
   }
-#Activities {background-color: rgb(211, 139, 139);}
-#Communication {background-color: rgb(91, 158, 167);}
-#Mindfulness {background-color: rgb(109, 156, 117);}
-#Community {background-color: rgb(209, 133, 83);}
+
+  #Activities { 
+    background-color: rgb(211, 139, 139);
+    margin-right: 3%;
+  }
+  #Communication { 
+    background-color: rgb(91, 158, 167);
+    margin-right: 3%;
+  }
+  #Mindfulness { 
+    background-color: rgb(109, 156, 117);
+    margin-right: 3%;
+  }
+  #Community {
+    background-color: rgb(209, 133, 83);
+    margin-right: 3%;
+  }
   
