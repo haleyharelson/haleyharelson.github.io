@@ -58,6 +58,19 @@
     fill:lightcoral;
   }
 
+  .ucla-button {
+    margin-bottom: 10px;
+    margin-left: 140px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+
+  .promis-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+
   .axis-label {
     font-size:1.2em;
     font-family:sans-serif;
