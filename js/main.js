@@ -19,7 +19,6 @@ let yAxisRaceChart;
 
 // This function is called once the HTML page is fully loaded by the browser
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("page loaded");
     drawGenderLollipopCanvas();
     drawGenderLollipopChart('AvgUCLAScore');
     drawRaceLollipopCanvas();
@@ -171,7 +170,7 @@ function drawRaceLollipopChart(selectedScore) {
     xAxisRaceChart.transition().duration(1000).call(d3.axisBottom(xScaleRaceChart));
 
     // Add Y axis
-    yScaleRaceChart.domain([40, 55]);
+    yScaleRaceChart.domain([40, 60]);
     yAxisRaceChart.transition().duration(1000).call(d3.axisLeft(yScaleRaceChart).ticks(20));
 
     // variable u: map data to existing circle
