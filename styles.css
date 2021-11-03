@@ -5,7 +5,7 @@
     padding: 0;
     overflow: hidden;
     background-color: #666;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -51,6 +51,18 @@
     border:1px solid gray;  
     display: block;
     margin: auto;
+    margin-bottom: 25px;
+  }
+
+  #uclaMapSvg {
+    margin-left: 119px;
+    margin-top: 2825px;
+    margin-bottom: 25px;
+  }
+
+  #promisMapSvg {
+    margin-left: 119px;
+    margin-top: 3450px;
     margin-bottom: 25px;
   }
 
