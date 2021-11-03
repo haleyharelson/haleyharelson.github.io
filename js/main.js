@@ -522,6 +522,7 @@ function drawMap() {
     }
 
 function drawBarChart() {
+    // Draw canvas for barchart 
     const svg = d3.select('#barchartSvg');
     const width = +svg.style('width').replace('px', '');
     const height = +svg.style('height').replace('px', '');
@@ -530,17 +531,19 @@ function drawBarChart() {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
+    // Data import and wrangling
     d3.csv('/data/Code Frequencies.csv').then(data => {
-
+        // Sort the data from highest frequency value to lowest
         data.sort(function (a, b) {
             return +b["Frequency"] - +a["Frequency"];
         });
-
+        // Convert "Frequency" attribute to a number
         data.forEach(d => {
             d.Frequency = +d["Frequency"];
             d.Codes = d["Codes"];
         });
 
+        // Create X and Y Scales
         const xScale = d3.scaleLinear()
             .domain([0, d3.max(data, function (d) { return d.Frequency; })]) // data space
             .range([0, innerWidth]); // pixel space
@@ -552,6 +555,7 @@ function drawBarChart() {
         const g = svg.append('g')
             .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
+        // Create barchart 
         var barchart = g.selectAll('rect')
             .data(data)
             .enter()
@@ -562,11 +566,12 @@ function drawBarChart() {
                 return xScale(d.Frequency);
             });
 
+        // Create X and Y Axes
         const yAxis = d3.axisLeft(yScale);
         g.append('g').call(yAxis)
             .style("font-size", "12px");
-
         const xAxis = d3.axisBottom(xScale);
+
         g.append('g').call(xAxis)
             .attr('transform', `translate(0,${innerHeight})`)
             .selectAll("text")
@@ -575,7 +580,6 @@ function drawBarChart() {
             .attr("dx", "-10px")
             .attr("dy", "0px")
             .attr("transform", "rotate(-45)");
-
         g.append('text')
             .attr('class', 'axis-label')
             .attr('transform', 'rotate(-90)')
@@ -589,7 +593,6 @@ function drawBarChart() {
             .attr('x', innerWidth / 2)
             .attr('y', innerHeight + 70)
             .text('Frequency');
-
         g.append("text")
             .attr("x", (width / 2) - 100)             
             .attr("y", 10 - (margin.top / 2))
