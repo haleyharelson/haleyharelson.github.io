@@ -117,6 +117,23 @@
     height: 100%;
   }
 
+    /* Legend Position Style */
+  .legend {
+    position:absolute;
+    left:20px;
+    top:30px;
+  }
+
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  .axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
   #Activities { 
     background-color: rgb(211, 139, 139);
     margin-right: 3%;
