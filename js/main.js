@@ -281,7 +281,7 @@ function drawGenderLollipopChart(selectedScore) {
           .attr("x2", function(d) { return xScaleGenderChart(d.Gender); })
           .attr("y1", yScaleGenderChart(45))
           .attr("y2", function(d) { return yScaleGenderChart(d[selectedScore]); })
-          .attr("stroke", "#69b3a2")
+          .attr("stroke", "rgb(211, 139, 139)")
     
     // variable u: map data to existing circle
     var u = svgGenderChart.selectAll("circle")
@@ -296,7 +296,7 @@ function drawGenderLollipopChart(selectedScore) {
           .attr("cx", function(d) { return xScaleGenderChart(d.Gender); })
           .attr("cy", function(d) { return yScaleGenderChart(d[selectedScore]); })
           .attr("r", 8)
-          .attr("fill", "#69b3a2");
+          .attr("fill", "rgb(211, 139, 139)");
         
         svgGenderChart.append('text')
           .attr('class', 'axis-label')
@@ -354,7 +354,7 @@ function drawRaceLollipopChart(selectedScore) {
           .attr("x2", function(d) { return xScaleRaceChart(d.Race); })
           .attr("y1", yScaleRaceChart(40))
           .attr("y2", function(d) { return yScaleRaceChart(d[selectedScore]); })
-          .attr("stroke", "#69b3a2")
+          .attr("stroke", "rgb(209, 133, 83)")
     
     // variable u: map data to existing circle
     var u = svgRaceChart.selectAll("circle")
@@ -369,7 +369,7 @@ function drawRaceLollipopChart(selectedScore) {
           .attr("cx", function(d) { return xScaleRaceChart(d.Race); })
           .attr("cy", function(d) { return yScaleRaceChart(d[selectedScore]); })
           .attr("r", 8)
-          .attr("fill", "#69b3a2");
+          .attr("fill", "rgb(209, 133, 83)");
         
         svgRaceChart.append('text')
           .attr('class', 'axis-label')
@@ -402,7 +402,7 @@ function drawUCLAMap() {
     var height = 700 - margin.top - margin.bottom;
 
     var lowColor = '#f9f9f9'
-    var highColor = '#bc2a66'
+    var highColor = 'rgb(91, 158, 167)'
 
     // D3 Projection
     var projection = d3.geoAlbersUsa()
@@ -522,7 +522,7 @@ function drawPROMISMap() {
     var height = 700 - margin.top - margin.bottom;
 
     var lowColor = '#f9f9f9'
-    var highColor = '#bc2a66'
+    var highColor = 'rgb(91, 158, 167)'
 
     // D3 Projection
     var projection = d3.geoAlbersUsa()
