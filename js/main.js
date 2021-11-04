@@ -25,6 +25,7 @@ let yAxisRaceChart;
 document.addEventListener('DOMContentLoaded', function () {
     drawGenderPercentageBarChart();
     drawRacePercentageBarChart();
+    drawStatePercentageBarChart();
     drawGenderLollipopCanvas();
     drawGenderLollipopChart('AvgUCLAScore');
     drawRaceLollipopCanvas();
@@ -189,6 +190,94 @@ function drawRacePercentageBarChart() {
             .style("font-size", "24px") 
             .style("text-decoration", "underline")  
             .text("Comparison of Race in Data Sample");
+    });
+}
+
+function drawStatePercentageBarChart() {
+    const svg = d3.select('#statePercentageSvg');
+    const width = +svg.style('width').replace('px', '');
+    const height = +svg.style('height').replace('px', '');
+
+    const margin = { top: 40, bottom: 90, right: 20, left: 190 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    d3.csv('/data/State Count.csv').then(data => {
+
+        data.sort(function (a, b) {
+            return +b["Count"] - +a["Count"];
+        });
+
+        data.forEach(d => {
+            d.Count= +d["Count"];
+            d.State = d["State"];
+        });
+
+        data.forEach(d => {
+            d.Count = (d.Count/1477)*100;
+        });
+        console.log("DATA", data)
+
+        const xScale = d3.scaleLinear()
+            .domain([0, d3.max(data, function (d) { return d["Count"]; })]) // data space
+            .range([0, innerWidth]); // pixel space
+        const yScale = d3.scaleBand()
+            .domain(data.map(function (d) { return d.State; }))
+            .range([0, innerHeight])
+            .padding(0.1);
+
+        const g = svg.append('g')
+            .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+
+        var barchart = g.selectAll('rect')
+            .data(data)
+            .enter()
+            .append('rect')
+            .attr('y', d => yScale(d.State))
+            .attr('height', yScale.bandwidth())
+            .attr('width', function (d) {
+                return xScale(d["Count"]);
+            });
+
+        const yAxis = d3.axisLeft(yScale);
+        g.append('g').call(yAxis)
+            .style("font-size", "12px")
+            .selectAll("text")  
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(10)");
+
+        const xAxis = d3.axisBottom(xScale);
+
+        g.append('g').call(xAxis)
+            .attr('transform', `translate(0,${innerHeight})`)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .style("font-size", "12px")
+            .attr("dx", "-10px")
+            .attr("dy", "0px")
+            .attr("transform", "rotate(-45)");
+        g.append('text')
+            .attr('class', 'axis-label')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', '-170px')
+            .attr('x', -innerHeight / 2)
+            .attr('text-anchor', 'middle')
+            .text('State');
+        g.append('text')
+            .attr('class', 'axis-label')
+            .attr('text-anchor', 'middle')
+            .attr('x', innerWidth / 2)
+            .attr('y', innerHeight + 70)
+            .text('Percentage of Sample');
+        g.append("text")
+            .attr("x", (width / 2) - 100)             
+            .attr("y", 10 - (margin.top / 2))
+            .attr("text-anchor", "middle")  
+            .style("font-size", "24px") 
+            .style("text-decoration", "underline")  
+            .text("Comparison of States in Data Sample");
     });
 }
 
