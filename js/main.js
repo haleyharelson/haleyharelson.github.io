@@ -110,7 +110,7 @@ function drawGenderPercentageBarChart() {
             .attr("text-anchor", "middle")  
             .style("font-size", "24px") 
             .style("text-decoration", "underline")  
-            .text("Comparison of Gender in Data Sample");
+            .text("Comparison of Genders in Data Sample");
     });
 }
 
@@ -189,7 +189,7 @@ function drawRacePercentageBarChart() {
             .attr("text-anchor", "middle")  
             .style("font-size", "24px") 
             .style("text-decoration", "underline")  
-            .text("Comparison of Race in Data Sample");
+            .text("Comparison of Races in Data Sample");
     });
 }
 
