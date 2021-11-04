@@ -513,7 +513,6 @@ function drawUCLAMap() {
         for (var d = 0; d < data.length; d++) {
             dataArray.push(parseFloat(data[d].value))
         }
-        console.log("length:", dataArray.length)
         var minVal = d3.min(dataArray)
         var maxVal = d3.max(dataArray)
         var ramp = d3.scaleLinear().domain([minVal,maxVal]).range([lowColor,highColor])

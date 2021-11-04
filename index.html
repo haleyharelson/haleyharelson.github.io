@@ -26,18 +26,73 @@
             <!-- Add 2 buttons for selecting between UCLA and PROMIS scores -->
             <p>
                 Before analyzing key results from the data, we wanted to look at the demographics and composition
-                of our survey sample.
+                of our survey sample. This helps us determine how representative our sample is of the entire 
+                population (or not). Since we wanted to visualize the relationships between UCLA/PROMIS scores and 
+                gender, race, and state, these were the particular demographics we looked at the percentages of.
+                The bar chart below indicates that out of the 1,468 respondents who identified as male or female,
+                about 87% were female while only about 13% were male.
             </p>
             <svg id="genderPercentageSvg"></svg>
+            <p>
+                In addition to gender, we also analyzed race as a demographic in this sample. As illustrated below, 
+                a vast majority of the respondents identified as white (about 96%), while less than 1% of respondents
+                identified as any other race. Roughly 2% identified as "other", meaning they did not feel that the other
+                options accurately identified their race.
+            </p>            
             <svg id="racePercentageSvg"></svg>
+            <p>
+                Finally, we looked at the representation of states in the sample data (where the participants live). As shown
+                by the bar chart below, the states with the largest percentages of respondents are Arizona (about 20%),
+                California (about 12%), and Ohio (roughly 3.5%). In contrast, less than 1% of respondents reported as living
+                in Vermont or North Dakota, and less than 0.1% of respondents live in Wyoming.
+            </p>
             <svg id="statePercentageSvg"></svg>
+            <p>
+                <b>More information about the UCLA and PROMIS scales:</b>
+                <p>
+                <b>UCLA: </b>Total score < 28 = No/Low Loneliness, total score 28 - 43 = Moderate Loneliness, and total score >43 = High Loneliness
+                </p>
+                <p>
+                <b>PROMIS: </b>In a reference population (usually the US general population), mean of 50 with a standard deviation of 10. Higher scores represent poorer social health.
+                </p>
+            </p>
+            <p>
+                Below is a lollipop chart which represents the average UCLA/PROMIS scores by gender. For both scales,
+                the average score for males and females were very similar. For the UCLA scale, the average score for males
+                was 49.09, while the average score for females was 48.79. For the PROMIS scale, the average score for males
+                was 48.74, while the average score for females was 49.53. According to the UCLA scale, both females and males
+                reported high loneliness, while according to the PROMIS scale, females and males reported about average social health.
+            </p>
             <button onclick="drawGenderLollipopChart('AvgUCLAScore')" class="ucla-button-gender">UCLA SCORE</button>
             <button onclick="drawGenderLollipopChart('AvgPROMISScore')" class="promis-button-gender">PROMIS SCORE</button>
             <svg id="genderLollipopSvg"></svg>
+            <p>
+                Below is another lollipop chart representing the average UCLA/PROMIS scores by race. Pacific Islander respondents
+                had the highest average UCLA score (56.33), followed by respondents who identified as "other" (51.5), multi-racial
+                respondents (49.63), white respondents (48.85), Asian respondents (46.71), and black respondents (43.22). These 
+                scores all fall into the "high loneliness" range of the UCLA scale. For the PROMIS scale, Pacific Islander respondents
+                again reported the highest score (55.2), followed by multi-racial respondents (51.59) and those who identified as "other" (50.27), then
+                by white respondents (49.45), Asian respondents (48.77), and black respondents (45.08). According to the PROMIS 
+                scale, the scores for Pacific Islander, multi-racial, and "other" respondents are higher than average, the scores for 
+                white and Asian respondents are about average, and the score for black respondents is a little below average. 
+            </p> 
             <button onclick="drawRaceLollipopChart('AvgUCLAScore')" class="ucla-button-race">UCLA SCORE</button>
             <button onclick="drawRaceLollipopChart('AvgPROMISScore')" class="promis-button-race">PROMIS SCORE</button>
             <svg id="raceLollipopSvg"></svg>
+            <p>
+                Using a choropleth map, we analyzed the average UCLA score by state. We can see that the 5 states reporting the highest 
+                loneliness are Maryland (53.69), Arkansas (53.11), Mississippi (52.13), Florida (51.64), and Virginia (51.36). The 5 states
+                reporting the lowest loneliness are North Dakota (43), Iowa (43.71), Rhode Island (44), South Carolina (45.11), and Hawaii (45.5). All 
+                50 states had scores >= 43, which translates to "high loneliness" according to the UCLA scale.
+            </p>
             <svg id="uclaMapSvg"></svg>
+            <p>
+                Using another choropleth map, we analyzed the average PROMIS score by state. The 5 states reporting the highest 
+                social isolation are Wyoming (56.1), Nebraska (54.03), Maryland (53.37), Vermont (52.57), and Arkansas (52.16). 
+                The 5 states reporting the lowest social isolation are Hawaii (45.7), Louisiana (45.38), Rhode Island (43.93), Idaho (43.56), and North Dakota (34.8).
+                42% of states had PROMIS scores that indicate higher than average social isolation.
+            </p>
+            <br></br>
             <br></br>
             <br></br>
             <br></br>
@@ -65,6 +120,41 @@
             <br></br>
             <br></br>
             <svg id="promisMapSvg"></svg>
+            <p>
+                The survey data revealed differences and similarities in social isolation and loneliness across different demographics
+                in the sample. We then looked at the data from the interviews and coded transcripts to identify which strategies 
+                were discussed more often as helping to combat social isolation and loneliness during COVID-19.
+            </p>
+            <p>
+            <b>
+                Code Descriptions:
+            </b>
+            <p>
+                <b>Activities:</b> What are some of the activities people are participating in an attempt to prevent isolation or loneliness? 
+                Examples: Podcasts, walking (with self or others), reading, hiking, gardening, writing, blogging
+            </p>
+            <p>
+                <b>Communication Facilitation:</b> Anything that facilitates conversations or connecting. What strategies have been used to facilitate conversation? 
+                Examples: Email, phone, social networks (Facebook, Instagram), instant messaging, Zoom, window chatting, in-person  
+            </p>
+            <p>
+                <b>Mindfulness and Reflection:</b> When a participant is describing times of reflection or insight into their given situation, including how they are processing where they are at or discussing opportunities to have this reflection.  
+                When participants note their behavior, practices, or strategies to maintain well-being. Examples: Have something new on your calendar everyday, reflecting on how one’s past experiences have prepared them well for current circumstances, keeping busy and maintaining control, planning activities for trips or getting away to reflect.
+            </p>
+            <p>
+                <b>Community Engagement:</b> Activities that ay be organized by the community or are within the community that people are participating in. 
+                Examples: Neighborhood bands, outdoor art exhibits, outdoor murals, online events
+            </p>
+            <p>
+                <b>Acts of Service:</b> When individuals are supporting others or engaging in community service of some sort. 
+                Examples: Patient advocate, help with groceries or errands, getting vaccine appointments  
+            </p>
+            </p>
+            <p>
+                As illustrated in the bar chart below, the code that appears the most frequently across the interview transcripts
+                is activities (310 times), followed by communication facilitation (274 times), 
+                mindfulness and reflection (155 times), community engagement (105 times), and acts of service (54 times).
+            </p>
             <svg id="barchartSvg"></svg>
     </body>
 </html>
