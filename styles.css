@@ -43,7 +43,7 @@
     margin-left: 50px;
     margin-right: 50px;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   svg {
@@ -57,13 +57,13 @@
 
   #uclaMapSvg {
     margin-left: 450px;
-    margin-top: 4150px;
+    margin-top: 4250px;
     margin-bottom: 25px;
   }
 
   #promisMapSvg {
     margin-left: 450px;
-    margin-top: 4775px;
+    margin-top: 4900px;
   }
 
   rect {

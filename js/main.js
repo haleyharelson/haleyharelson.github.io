@@ -78,14 +78,14 @@ function drawGenderPercentageBarChart() {
 
         const yAxis = d3.axisLeft(yScale);
         g.append('g').call(yAxis)
-            .style("font-size", "12px");
+            .style("font-size", "14px");
 
         const xAxis = d3.axisBottom(xScale);
         g.append('g').call(xAxis)
             .attr('transform', `translate(0,${innerHeight})`)
             .selectAll("text")
             .style("text-anchor", "end")
-            .style("font-size", "12px")
+            .style("font-size", "14px")
             .attr("dx", "-10px")
             .attr("dy", "0px")
             .attr("transform", "rotate(-45)");
@@ -157,14 +157,14 @@ function drawRacePercentageBarChart() {
 
         const yAxis = d3.axisLeft(yScale);
         g.append('g').call(yAxis)
-            .style("font-size", "12px");
+            .style("font-size", "14px");
 
         const xAxis = d3.axisBottom(xScale).ticks(18);
         g.append('g').call(xAxis)
             .attr('transform', `translate(0,${innerHeight})`)
             .selectAll("text")
             .style("text-anchor", "end")
-            .style("font-size", "12px")
+            .style("font-size", "14px")
             .attr("dx", "-10px")
             .attr("dy", "0px")
             .attr("transform", "rotate(-45)");
@@ -254,7 +254,7 @@ function drawStatePercentageBarChart() {
             .attr('transform', `translate(0,${innerHeight})`)
             .selectAll("text")
             .style("text-anchor", "end")
-            .style("font-size", "12px")
+            .style("font-size", "14px")
             .attr("dx", "-10px")
             .attr("dy", "0px")
             .attr("transform", "rotate(-45)");
@@ -366,7 +366,7 @@ function drawGenderLollipopChart(selectedScore) {
         .merge(j)
         .transition()
         .duration(1000)
-          .attr("x1", function(d) { console.log(xScaleGenderChart(d.Gender)) ; return xScaleGenderChart(d.Gender); })
+          .attr("x1", function(d) { return xScaleGenderChart(d.Gender); })
           .attr("x2", function(d) { return xScaleGenderChart(d.Gender); })
           .attr("y1", yScaleGenderChart(45))
           .attr("y2", function(d) { return yScaleGenderChart(d[selectedScore]); })
