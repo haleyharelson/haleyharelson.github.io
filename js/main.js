@@ -506,6 +506,11 @@ function drawUCLAMap() {
     var svg = d3.select('#uclaMapSvg')
     .attr("width", width)
     .attr("height", height);
+    
+    // define tooltip
+    var div = d3.select("body").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0); 
 
     d3.csv('/data/States UCLA Score.csv')
     .then(function(data) {
@@ -546,7 +551,17 @@ function drawUCLAMap() {
       .attr("d", path)
       .style("stroke", "#fff")
       .style("stroke-width", "1")
-      .style("fill", function(d) { return ramp(d.properties.value) });
+      .style("fill", function(d) { return ramp(d.properties.value) })
+      .on("mouseover", function(d) {		
+        div.style("opacity", .9);		
+        div.html("UCLA Score: " + d.properties.value)	
+        .style("left", (d3.event.pageX) + "px")		
+        .style("top", (d3.event.pageY - 28) + "px");	
+        })					
+        .on("mouseout", function(d) {		
+        div.style("opacity", 0);	
+        });
+    ;
     
     svg.append("text")
       .attr("x", (width / 2) - 20)             
@@ -626,6 +641,10 @@ function drawPROMISMap() {
     .attr("width", width)
     .attr("height", height);
 
+    var div = d3.select("body").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0); 
+
     d3.csv('/data/States PROMIS Score.csv')
     .then(function(data) {
         var dataArray = [];
@@ -666,7 +685,17 @@ function drawPROMISMap() {
       .attr("d", path)
       .style("stroke", "#fff")
       .style("stroke-width", "1")
-      .style("fill", function(d) { return ramp(d.properties.value) });
+      .style("fill", function(d) { return ramp(d.properties.value) })
+      .on("mouseover", function(d) {		
+        div.style("opacity", .9);		
+        div.html("PROMIS Score: " + d.properties.value)	
+        .style("left", (d3.event.pageX) + "px")		
+        .style("top", (d3.event.pageY - 28) + "px");	
+        })					
+        .on("mouseout", function(d) {		
+        div.style("opacity", 0);	
+        });
+    ;
     
     svg.append("text")
       .attr("x", (width / 2) - 20)             

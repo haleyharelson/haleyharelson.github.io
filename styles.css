@@ -68,6 +68,17 @@
     fill:rgb(109, 156, 117);
   }
 
+  div.tooltip {	
+    position: absolute;			
+    text-align: center;							
+    padding: 10px;			
+    font: 12px sans-serif;		
+    background: lightblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+  }
+
   .ucla-button-gender {
     margin-bottom: 10px;
     margin-left: 140px;
